@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Smartphone } from "lucide-react";
 
@@ -14,8 +15,16 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary-foreground/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-foreground/5 rounded-full blur-3xl" />
+        <motion.div 
+          className="absolute top-20 left-10 w-64 h-64 bg-primary-foreground/5 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary-foreground/5 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.8, 0.5, 0.8] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl" />
       </div>
 
@@ -25,24 +34,43 @@ const Hero = () => {
       }} />
 
       <div className="relative z-10 container-narrow section-padding text-center">
-        <div className="animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
             <Smartphone className="w-4 h-4 text-primary-foreground" />
             <span className="text-sm text-primary-foreground/90 font-medium">Mobile-First Marketplace</span>
           </div>
-        </div>
+        </motion.div>
 
-        <h1 className="font-display text-4xl md:text-5xl lg:text-7xl text-primary-foreground mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <motion.h1 
+          className="font-display text-4xl md:text-5xl lg:text-7xl text-primary-foreground mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
           AgriHub – A Smarter Way to{' '}
           <span className="italic">Buy & Sell</span>{' '}
           Agricultural Products
-        </h1>
+        </motion.h1>
 
-        <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <motion.p 
+          className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           Connecting farmers and buyers directly through a transparent digital marketplace
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <Button variant="hero-outline" size="xl" onClick={scrollToDownload}>
             <Smartphone className="w-5 h-5 mr-2" />
             Get the App
@@ -51,29 +79,48 @@ const Hero = () => {
             How It Works
             <ArrowDown className="w-5 h-5 ml-2" />
           </Button>
-        </div>
+        </motion.div>
 
         {/* Stats */}
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <motion.div 
+          className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           {[
             { value: '100%', label: 'Direct Sales' },
             { value: 'Verified', label: 'Sellers' },
             { value: 'Secure', label: 'Payments' },
           ].map((stat, idx) => (
-            <div key={idx} className="text-center">
+            <motion.div 
+              key={idx} 
+              className="text-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
+            >
               <div className="text-2xl md:text-3xl font-bold text-primary-foreground">{stat.value}</div>
               <div className="text-sm text-primary-foreground/60">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+      <motion.div 
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
         <div className="w-6 h-10 border-2 border-primary-foreground/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2 animate-pulse" />
+          <motion.div 
+            className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
