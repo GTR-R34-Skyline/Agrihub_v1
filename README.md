@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# AgriHub Website (Landing Page)
 
-## Project info
+This repository contains the **static landing website** for the AgriHub Marketplace.  
+The purpose of this site is to introduce the platform, explain key features, and direct users to download the mobile application via QR code or link.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+##  About AgriHub
 
-There are several ways of editing your application.
+AgriHub is a mobile marketplace connecting:
 
-**Use Lovable**
+- **Farmers** – list and manage agricultural products  
+- **Buyers** – browse, cart, checkout, order tracking  
+- **Admins** – approve products and view analytics
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+This landing page serves as the product’s introduction and install portal.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+##  Key Sections
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Hero with strong invite to install the app  
+- Feature overview  
+- Role breakdown (Farmer / Buyer / Admin)  
+- Step-by-step explanation  
+- Download section with QR code  
+- Footer with relevant links
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## Design Inspiration
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+The UI and motion system are inspired by clean, modern landing pages with:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Sticky hover navbar
+- Calm section transitions
+- Deep contrast color scheme
+- Simple typography
+- QR code call-to-action
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## Tech Stack
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- HTML5
+- SCSS / Tailwind CSS (optional)
+- JavaScript (minimal)
+- Responsive design
