@@ -4,9 +4,11 @@ import Hero from "@/components/landing/Hero";
 import WhatIsAgriHub from "@/components/landing/WhatIsAgriHub";
 import WhoIsItFor from "@/components/landing/WhoIsItFor";
 import KeyFeatures from "@/components/landing/KeyFeatures";
+import StatsCounter from "@/components/landing/StatsCounter";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
+import ContactForm from "@/components/landing/ContactForm";
 import DownloadSection from "@/components/landing/DownloadSection";
 import Footer from "@/components/landing/Footer";
 
@@ -36,9 +38,11 @@ const Index = () => {
         <div id="features">
           <KeyFeatures />
         </div>
+        <StatsCounter />
         <HowItWorks />
         <Testimonials />
         <FAQ />
+        <ContactForm />
         <DownloadSection />
         <Footer />
       </main>
