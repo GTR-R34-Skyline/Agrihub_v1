@@ -5,6 +5,8 @@ import WhatIsAgriHub from "@/components/landing/WhatIsAgriHub";
 import WhoIsItFor from "@/components/landing/WhoIsItFor";
 import KeyFeatures from "@/components/landing/KeyFeatures";
 import HowItWorks from "@/components/landing/HowItWorks";
+import Testimonials from "@/components/landing/Testimonials";
+import FAQ from "@/components/landing/FAQ";
 import DownloadSection from "@/components/landing/DownloadSection";
 import Footer from "@/components/landing/Footer";
 
@@ -35,6 +37,8 @@ const Index = () => {
           <KeyFeatures />
         </div>
         <HowItWorks />
+        <Testimonials />
+        <FAQ />
         <DownloadSection />
         <Footer />
       </main>
