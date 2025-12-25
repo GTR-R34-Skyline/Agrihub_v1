@@ -33,35 +33,35 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      ease: "easeOut" as const,
     },
   },
 };
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="section-padding bg-gradient-soft">
+    <section id="how-it-works" className="section-padding bg-card/30">
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
             <ArrowRight className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">Getting Started</span>
           </div>
@@ -81,8 +81,8 @@ const HowItWorks = () => {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="hidden lg:block absolute top-24 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 origin-left"
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="hidden lg:block absolute top-24 left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent origin-left"
           />
 
           <motion.div
@@ -100,22 +100,12 @@ const HowItWorks = () => {
               >
                 {/* Step number badge */}
                 <div className="relative inline-flex mb-6">
-                  <motion.div 
-                    className="w-20 h-20 bg-card rounded-2xl shadow-elevated flex items-center justify-center relative z-10"
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
+                  <div className="w-20 h-20 bg-card rounded-2xl border border-border/50 flex items-center justify-center relative z-10">
                     <step.icon className="w-8 h-8 text-primary" />
-                  </motion.div>
-                  <motion.div 
-                    className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground shadow-soft z-20"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
-                  >
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground z-20">
                     {step.step}
-                  </motion.div>
+                  </div>
                 </div>
 
                 <h3 className="font-display text-xl text-foreground mb-3">

@@ -41,35 +41,35 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      ease: "easeOut" as const,
     },
   },
 };
 
 const KeyFeatures = () => {
   return (
-    <section className="section-padding bg-background">
+    <section id="features" className="section-padding bg-background">
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">Features</span>
           </div>
@@ -94,16 +94,12 @@ const KeyFeatures = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative bg-card rounded-2xl p-6 shadow-soft hover:shadow-elevated transition-shadow duration-300 border border-border/50 hover:border-primary/20"
+              className="group relative bg-card rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-colors duration-300"
             >
               <div className="flex items-start gap-4">
-                <motion.div 
-                  className="w-12 h-12 bg-gradient-hero rounded-xl flex items-center justify-center flex-shrink-0 shadow-soft group-hover:shadow-glow transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                >
+                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center flex-shrink-0">
                   <feature.icon className="w-6 h-6 text-primary-foreground" />
-                </motion.div>
+                </div>
                 <div>
                   <h3 className="font-semibold text-lg text-foreground mb-2">
                     {feature.title}

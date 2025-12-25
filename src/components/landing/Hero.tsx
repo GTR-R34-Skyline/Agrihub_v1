@@ -13,54 +13,40 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
-      {/* Decorative elements */}
+      {/* Ambient glow effects - static, no animation */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          className="absolute top-20 left-10 w-64 h-64 bg-primary-foreground/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-10 w-96 h-96 bg-primary-foreground/5 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.8, 0.5, 0.8] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-violet-accent/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]" />
       </div>
-
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }} />
 
       <div className="relative z-10 container-narrow section-padding text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
-            <Smartphone className="w-4 h-4 text-primary-foreground" />
-            <span className="text-sm text-primary-foreground/90 font-medium">Mobile-First Marketplace</span>
+          <div className="inline-flex items-center gap-2 bg-foreground/5 backdrop-blur-sm border border-foreground/10 px-4 py-2 rounded-full mb-8">
+            <Smartphone className="w-4 h-4 text-primary" />
+            <span className="text-sm text-muted-foreground font-medium">Mobile-First Marketplace</span>
           </div>
         </motion.div>
 
         <motion.h1 
-          className="font-display text-4xl md:text-5xl lg:text-7xl text-primary-foreground mb-6"
+          className="font-display text-4xl md:text-5xl lg:text-7xl text-foreground mb-6 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
         >
           AgriHub – A Smarter Way to{' '}
-          <span className="italic">Buy & Sell</span>{' '}
+          <span className="text-gradient">Buy & Sell</span>{' '}
           Agricultural Products
         </motion.h1>
 
         <motion.p 
-          className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10"
+          className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
           Connecting farmers and buyers directly through a transparent digital marketplace
         </motion.p>
@@ -69,13 +55,22 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
         >
-          <Button variant="hero-outline" size="xl" onClick={scrollToDownload}>
+          <Button 
+            size="lg" 
+            onClick={scrollToDownload}
+            className="bg-gradient-primary hover:opacity-90 transition-opacity text-primary-foreground px-8"
+          >
             <Smartphone className="w-5 h-5 mr-2" />
             Get the App
           </Button>
-          <Button variant="ghost" size="xl" className="text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10" onClick={scrollToHowItWorks}>
+          <Button 
+            variant="ghost" 
+            size="lg" 
+            className="text-muted-foreground hover:text-foreground hover:bg-foreground/5 border border-foreground/10" 
+            onClick={scrollToHowItWorks}
+          >
             How It Works
             <ArrowDown className="w-5 h-5 ml-2" />
           </Button>
@@ -83,26 +78,20 @@ const Hero = () => {
 
         {/* Stats */}
         <motion.div 
-          className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+          className="mt-24 grid grid-cols-3 gap-8 max-w-lg mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
         >
           {[
             { value: '100%', label: 'Direct Sales' },
             { value: 'Verified', label: 'Sellers' },
             { value: 'Secure', label: 'Payments' },
           ].map((stat, idx) => (
-            <motion.div 
-              key={idx} 
-              className="text-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
-            >
-              <div className="text-2xl md:text-3xl font-bold text-primary-foreground">{stat.value}</div>
-              <div className="text-sm text-primary-foreground/60">{stat.label}</div>
-            </motion.div>
+            <div key={idx} className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
           ))}
         </motion.div>
       </div>
@@ -110,13 +99,14 @@ const Hero = () => {
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
       >
-        <div className="w-6 h-10 border-2 border-primary-foreground/30 rounded-full flex justify-center">
+        <div className="w-6 h-10 border-2 border-foreground/20 rounded-full flex justify-center">
           <motion.div 
-            className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2"
-            animate={{ opacity: [0.5, 1, 0.5] }}
+            className="w-1 h-3 bg-foreground/40 rounded-full mt-2"
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>

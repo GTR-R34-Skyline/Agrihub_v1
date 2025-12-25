@@ -11,16 +11,28 @@ const navLinks = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Show/hide based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      setIsScrolled(currentScrollY > 50);
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToDownload = () => {
     document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' });
@@ -35,9 +47,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-soft"
+          ? "bg-background/80 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -45,14 +59,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
-              isScrolled ? "bg-gradient-hero" : "bg-primary-foreground/20"
-            }`}>
-              <Leaf className={`w-5 h-5 ${isScrolled ? "text-primary-foreground" : "text-primary-foreground"}`} />
+            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+              <Leaf className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className={`font-display text-xl transition-colors duration-300 ${
-              isScrolled ? "text-foreground" : "text-primary-foreground"
-            }`}>
+            <span className="font-display text-xl text-foreground">
               AgriHub
             </span>
           </a>
@@ -63,17 +73,16 @@ const Navbar = () => {
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-sm font-medium transition-colors duration-300 hover:opacity-80 ${
-                  isScrolled ? "text-foreground" : "text-primary-foreground"
-                }`}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 {link.label}
               </button>
             ))}
             <Button
-              variant={isScrolled ? "default" : "hero-outline"}
+              variant="default"
               size="sm"
               onClick={scrollToDownload}
+              className="bg-gradient-primary hover:opacity-90 transition-opacity"
             >
               Get the App
             </Button>
@@ -86,16 +95,16 @@ const Navbar = () => {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <X className="w-6 h-6 text-foreground" />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <Menu className="w-6 h-6 text-foreground" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background rounded-2xl shadow-prominent p-6 mb-4 animate-fade-in">
+          <div className="md:hidden bg-card/95 backdrop-blur-xl rounded-2xl p-6 mb-4 animate-fade-in border border-border/50">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button
@@ -106,7 +115,7 @@ const Navbar = () => {
                   {link.label}
                 </button>
               ))}
-              <Button variant="default" size="default" onClick={scrollToDownload} className="mt-2">
+              <Button variant="default" size="default" onClick={scrollToDownload} className="mt-2 bg-gradient-primary">
                 Get the App
               </Button>
             </div>

@@ -34,19 +34,19 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      ease: "easeOut" as const,
     },
   },
 };
@@ -59,16 +59,16 @@ const FAQ = () => {
   };
 
   return (
-    <section className="section-padding bg-gradient-soft">
+    <section className="section-padding bg-card/30">
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
             <HelpCircle className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">FAQ</span>
           </div>
@@ -93,15 +93,15 @@ const FAQ = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-card rounded-xl shadow-soft border border-border/50 overflow-hidden"
+              className="bg-card rounded-xl border border-border/50 overflow-hidden"
             >
               <button
                 onClick={() => toggleFaq(idx)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-muted/50 transition-colors"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/30 transition-colors duration-300"
               >
                 <span className="font-semibold text-foreground pr-4">{faq.question}</span>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                  openIndex === idx ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                  openIndex === idx ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"
                 }`}>
                   {openIndex === idx ? (
                     <Minus className="w-4 h-4" />
@@ -117,7 +117,7 @@ const FAQ = () => {
                   height: openIndex === idx ? "auto" : 0,
                   opacity: openIndex === idx ? 1 : 0,
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="overflow-hidden"
               >
                 <p className="px-6 pb-6 text-muted-foreground leading-relaxed">

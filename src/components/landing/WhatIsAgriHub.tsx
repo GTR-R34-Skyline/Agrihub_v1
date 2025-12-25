@@ -10,17 +10,17 @@ const features = [
 
 const WhatIsAgriHub = () => {
   return (
-    <section className="section-padding bg-background">
+    <section id="about" className="section-padding bg-background">
       <div className="container-narrow">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
               <Leaf className="w-4 h-4 text-primary" />
               <span className="text-sm text-primary font-medium">About the Platform</span>
             </div>
@@ -39,10 +39,10 @@ const WhatIsAgriHub = () => {
               {features.map((feature, idx) => (
                 <motion.li 
                   key={idx} 
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                   className="flex items-center gap-3 text-foreground"
                 >
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
@@ -54,25 +54,25 @@ const WhatIsAgriHub = () => {
 
           {/* Visual */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative"
           >
-            <div className="aspect-square bg-gradient-soft rounded-3xl shadow-prominent p-8 lg:p-12">
-              <div className="h-full bg-card rounded-2xl shadow-elevated flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-square bg-card rounded-3xl shadow-elevated p-8 lg:p-12 border border-border/50">
+              <div className="h-full bg-secondary/50 rounded-2xl flex items-center justify-center relative overflow-hidden">
                 {/* Decorative circles */}
-                <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/10 rounded-full" />
-                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-accent/10 rounded-full" />
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/10 rounded-full blur-2xl" />
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-violet-accent/10 rounded-full blur-2xl" />
                 
                 <div className="text-center relative z-10 p-6">
                   <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="w-20 h-20 bg-gradient-hero rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow"
+                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                    className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow"
                   >
                     <Leaf className="w-10 h-10 text-primary-foreground" />
                   </motion.div>
@@ -84,11 +84,11 @@ const WhatIsAgriHub = () => {
             
             {/* Floating badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-prominent p-4 flex items-center gap-3"
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-elevated p-4 flex items-center gap-3 border border-border/50"
             >
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                 <CheckCircle2 className="w-6 h-6 text-primary" />
