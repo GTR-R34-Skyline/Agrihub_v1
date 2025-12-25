@@ -37,19 +37,19 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      ease: "easeOut" as const,
     },
   },
 };
@@ -62,10 +62,10 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
             <Quote className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">Testimonials</span>
           </div>
@@ -90,12 +90,12 @@ const Testimonials = () => {
             <motion.article
               key={idx}
               variants={itemVariants}
-              className="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-elevated transition-all duration-500 border border-border/50"
+              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-colors duration-500"
             >
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-wheat text-wheat" />
+                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
 
@@ -106,7 +106,7 @@ const Testimonials = () => {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-hero rounded-full flex items-center justify-center text-primary-foreground font-semibold">
+                <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
                   {testimonial.avatar}
                 </div>
                 <div>

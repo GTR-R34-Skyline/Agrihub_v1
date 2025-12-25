@@ -6,22 +6,16 @@ const userTypes = [
     icon: Tractor,
     title: "Farmers",
     description: "List your products, manage incoming orders, receive payments directly, and grow your agricultural business.",
-    color: "bg-primary/10",
-    iconColor: "text-primary",
   },
   {
     icon: ShoppingBag,
     title: "Buyers",
     description: "Discover fresh agricultural products, place orders easily, and track deliveries in real-time.",
-    color: "bg-accent/10",
-    iconColor: "text-accent",
   },
   {
     icon: Shield,
     title: "Admins",
     description: "Approve products, monitor platform analytics, ensure quality control, and manage platform health.",
-    color: "bg-secondary/10",
-    iconColor: "text-secondary",
   },
 ];
 
@@ -30,35 +24,35 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      ease: "easeOut" as const,
     },
   },
 };
 
 const WhoIsItFor = () => {
   return (
-    <section className="section-padding bg-gradient-soft">
+    <section className="section-padding bg-card/30">
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
             <Users className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">For Everyone</span>
           </div>
@@ -83,16 +77,11 @@ const WhoIsItFor = () => {
             <motion.article 
               key={idx}
               variants={cardVariants}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-prominent transition-shadow duration-500"
+              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-colors duration-500"
             >
-              <motion.div 
-                className={`w-16 h-16 ${user.color} rounded-2xl flex items-center justify-center mb-6`}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <user.icon className={`w-8 h-8 ${user.iconColor}`} />
-              </motion.div>
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/15 transition-colors duration-500">
+                <user.icon className="w-8 h-8 text-primary" />
+              </div>
 
               <h3 className="font-display text-2xl text-foreground mb-3">
                 {user.title}

@@ -38,7 +38,6 @@ const ContactForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name as keyof ContactFormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -50,9 +49,8 @@ const ContactForm = () => {
     setErrors({});
 
     try {
-      const validatedData = contactSchema.parse(formData);
+      contactSchema.parse(formData);
       
-      // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
       toast({
@@ -60,7 +58,6 @@ const ContactForm = () => {
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -94,19 +91,19 @@ const ContactForm = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-6">
               <Mail className="w-4 h-4 text-primary" />
               <span className="text-sm text-primary font-medium">Get in Touch</span>
             </div>
 
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-6">
               Have Questions?<br />
-              <span className="text-primary">We're Here to Help</span>
+              <span className="text-gradient">We're Here to Help</span>
             </h2>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
@@ -122,10 +119,10 @@ const ContactForm = () => {
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                   className="flex items-center gap-3 text-foreground"
                 >
                   <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -139,14 +136,14 @@ const ContactForm = () => {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-card rounded-2xl p-8 shadow-elevated border border-border/50"
+              className="bg-card rounded-2xl p-8 border border-border/50"
             >
               <div className="space-y-5">
                 {/* Name */}
@@ -163,8 +160,8 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your name"
-                      className={`w-full pl-12 pr-4 py-3 bg-background border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
-                        errors.name ? "border-destructive" : "border-border"
+                      className={`w-full pl-12 pr-4 py-3 bg-secondary/50 border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all ${
+                        errors.name ? "border-destructive" : "border-border/50"
                       }`}
                       maxLength={100}
                     />
@@ -188,8 +185,8 @@ const ContactForm = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Enter your email"
-                      className={`w-full pl-12 pr-4 py-3 bg-background border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
-                        errors.email ? "border-destructive" : "border-border"
+                      className={`w-full pl-12 pr-4 py-3 bg-secondary/50 border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all ${
+                        errors.email ? "border-destructive" : "border-border/50"
                       }`}
                       maxLength={255}
                     />
@@ -211,7 +208,7 @@ const ContactForm = () => {
                       name="inquiryType"
                       value={formData.inquiryType}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none cursor-pointer"
+                      className="w-full pl-12 pr-4 py-3 bg-secondary/50 border border-border/50 rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all appearance-none cursor-pointer"
                     >
                       {inquiryTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -241,8 +238,8 @@ const ContactForm = () => {
                       onChange={handleChange}
                       placeholder="Tell us how we can help..."
                       rows={4}
-                      className={`w-full pl-12 pr-4 py-3 bg-background border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${
-                        errors.message ? "border-destructive" : "border-border"
+                      className={`w-full pl-12 pr-4 py-3 bg-secondary/50 border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all resize-none ${
+                        errors.message ? "border-destructive" : "border-border/50"
                       }`}
                       maxLength={1000}
                     />
@@ -258,9 +255,8 @@ const ContactForm = () => {
                 {/* Submit */}
                 <Button
                   type="submit"
-                  variant="hero"
                   size="lg"
-                  className="w-full"
+                  className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

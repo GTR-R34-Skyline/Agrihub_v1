@@ -73,11 +73,11 @@ const StatsCounter = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-gradient-hero relative overflow-hidden">
-      {/* Decorative elements */}
+    <section className="section-padding bg-card/50 relative overflow-hidden">
+      {/* Ambient glow - static */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary-foreground/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-primary-foreground/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-accent/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="container-narrow relative z-10" ref={ref}>
@@ -85,13 +85,13 @@ const StatsCounter = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl md:text-4xl text-primary-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-4">
             Growing Stronger Every Day
           </h2>
-          <p className="text-lg text-primary-foreground/70 max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Join thousands of farmers and buyers already transforming agriculture.
           </p>
         </motion.div>
@@ -100,25 +100,21 @@ const StatsCounter = () => {
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
               className="text-center"
             >
-              <motion.div
-                className="w-16 h-16 bg-primary-foreground/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <stat.icon className="w-8 h-8 text-primary-foreground" />
-              </motion.div>
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <stat.icon className="w-8 h-8 text-primary" />
+              </div>
 
-              <div className="text-4xl md:text-5xl font-bold text-primary-foreground mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-foreground mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={isInView} />
               </div>
 
-              <div className="text-primary-foreground/70 text-sm font-medium">
+              <div className="text-muted-foreground text-sm font-medium">
                 {stat.label}
               </div>
             </motion.div>
